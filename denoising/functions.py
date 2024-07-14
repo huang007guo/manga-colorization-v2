@@ -37,7 +37,12 @@ def concatenate_input_noise_map(input, noise_sigma):
 
     # Fill the downsampled image with zeros
     if 'cuda' in dtype:
-        downsampledfeatures = torch.cuda.FloatTensor(N, Cout, Hout, Wout).fill_(0)
+        # 在你的代码中，你正在使用旧的构造器方法来创建CUDA浮点张量，
+        # 这已经不再推荐使用。为了避免UserWarning警告，并采用PyTorch推荐的做法，
+        # 你应该使用torch.tensor()或直接使用如torch.zeros()这样的工厂函数，并指定device='cuda'参数。
+        # downsampledfeatures = torch.cuda.FloatTensor(N, Cout, Hout, Wout).fill_(0)
+        # 使用torch.zeros()创建张量并直接放置在GPU上
+        downsampledfeatures = torch.zeros((N, Cout, Hout, Wout), dtype=torch.float32, device='cuda')
     else:
         downsampledfeatures = torch.FloatTensor(N, Cout, Hout, Wout).fill_(0)
 

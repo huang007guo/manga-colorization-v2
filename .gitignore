@@ -4,5 +4,6 @@
 
 __pycache__/
 temp_colorization/
-
+.idea
 static/temp_images/
+/manga-colorization-v2.iml
