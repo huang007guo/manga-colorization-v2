@@ -102,6 +102,7 @@ if __name__ == "__main__":
 
     colorizer = MangaColorizator(device, args.generator, args.extractor)
     args.paths = args.path.split(',')
+    print(args.paths)
     if len(args.paths) > 1:
         args.isMultiple = True
     else:
